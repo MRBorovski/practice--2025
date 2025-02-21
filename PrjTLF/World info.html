@@ -1,0 +1,249 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World info</title>
+    <style>
+        body {
+            background-color: #1a1a1a; 
+            color: white; 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            margin-top: 40px; 
+        }
+
+        
+        .search-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .search-container input {
+            background-color: #333;
+            color: white;
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 16px;
+            outline: none;
+            width: 200px;
+        }
+
+        .search-container input::placeholder {
+            color: #aaa;
+        }
+
+        .highlight {
+            background-color: silver; 
+            text-shadow: 1px 1px 2px silver; 
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .block {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            min-width: 150px;
+            max-width: 200px;
+            min-height: 150px;
+            overflow: hidden;
+        }
+
+        .block img {
+            width: 100%; 
+            height: auto;
+            border-radius: 8px; 
+            transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+
+        .block img:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 10px #ffff00; 
+        }
+
+        .block a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 8px;
+            display: inline-block;
+            transition: text-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .block a:hover {
+            color: white; 
+            text-shadow: 0 0 10px #ffff00; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Строка поиска -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Пошук..." oninput="highlightText()">
+    </div>
+
+    <!-- Країни -->
+    <div class="section">
+        <h2>Країни</h2>
+        <div class="container">
+            <div class="block">
+                <a href="dondorn.html">
+                    <img src="IMG/Dondorn.png" alt="Дондорн">
+                </a>
+                <a href="dondorn.html"><span class="text">Дондорн</span></a>
+            </div>
+            <div class="block">
+                <a href="">
+                    <img src="IMG/Bogemia.png" alt="Богемія">
+                </a>
+                <a href=""><span class="text">Богемія</span></a>
+            </div>
+            <div class="block">
+                <a href="">
+                    <img src="IMG/Viledorf.png" alt="Віледорф">
+                </a>
+                <a href=""><span class="text">Віледорф</span></a>
+            </div>
+            <div class="block">
+                <a href="">
+                    <img src="IMG/Mahave.png" alt="Махаве">
+                </a>
+                <a href=""><span class="text">Махаве</span></a>
+            </div>
+            <div class="block">
+                <a href="">
+                    <img src="IMG/Gothia.png" alt="Готія">
+                </a>
+                <a href=""><span class="text">Готія</span></a>
+            </div>
+            <div class="block">
+                <a href="">
+                    <img src="IMG/Voronia.png" alt="Воронія">
+                </a>
+                <a href=""><span class="text">Воронія</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Великі міста -->
+<div class="section">
+    <h2>Великі міста</h2>
+    <div class="container">
+        <div class="block">
+            <a href=""><span class="text">Лидониум</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Манастер</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Тунаград</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Забрава</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Бракфурт</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Сант-томаск</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Винзельдорф</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Льеж</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Кувилов</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Вангерленд</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Барисо</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Кингстон</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Дамплур</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Край</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Янестина</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Бухта Динго</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Осса-де-фортуна</span></a>
+        </div>
+        <div class="block">
+            <a href=""><span class="text">Вубендорф</span></a>
+        </div>
+    </div>
+</div>
+
+    <!-- Видатні особистості -->
+    <div class="section">
+        <h2>Видатні особистості</h2>
+        <div class="container">
+            <div class="block">
+                <a href=""><span class="text">Блок 3.1</span></a>
+            </div>
+            <div class="block">
+                <a href=""><span class="text">Блок 3.2</span></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function highlightText() {
+            const searchInput = document.getElementById("searchInput").value.trim().toLowerCase();
+            const blocks = document.querySelectorAll(".block .text");
+
+            blocks.forEach(block => {
+                const text = block.textContent;
+                block.innerHTML = text; 										// Сбросим предыдущие выделения
+
+                if (searchInput && text.toLowerCase().includes(searchInput)) {
+                    const regex = new RegExp(`(${searchInput})`, 'gi'); 						// Регулярное выражение для поиска совпадений
+                    block.innerHTML = text.replace(regex, '<span class="highlight">$1</span>'); 			// Оборачиваем совпавшие части в <span>
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

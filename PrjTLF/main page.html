@@ -1,0 +1,176 @@
+<html>
+<head>
+  <title>Main page</title>
+  <style>
+    body {
+      background-color: #1a1a1a; 									
+      color: white; 											
+      font-family: Georgia, serif; 									
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: white; 											
+    }
+
+    div {
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #333; 										
+      opacity: 0; 											
+      transform: translateX(-100%); 									
+      animation: slideIn 2s forwards; 									
+    }
+
+    													/* Насройка анимации для КАЖДОГО блока */
+    @keyframes slideIn {
+      0% {
+        transform: translateX(-100%); 									
+        opacity: 0; 											
+      }
+      100% {
+        transform: translateX(0); 									
+        opacity: 1; 											
+      }
+    }
+
+    													
+    .world-map-container {
+      width: 100%;
+      max-width: 1000px; 										
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+      cursor: grab; 											
+    }
+
+    .world-map {
+      width: 100%;
+      transition: transform 0.3s ease;
+      border: 5px solid white;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+      cursor: move; 											
+    }
+
+    													
+    @keyframes fadeIn {
+      0% {
+        opacity: 0; 											
+      }
+      100% {
+        opacity: 1;											
+      }
+    }
+
+    a {
+      color: #ffcc00; 											
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;	 								
+    }
+
+  </style>
+</head>
+<body>
+<h1>Welcome to D&D together.com</h1>
+<div>
+  <h2>Проєкт "The last fall"</h2>
+  <p>Ласкаво просимо до нашого сайту посвяченого проєкту "The last fall" на основі гри Підземелля та дракони, тут ви зможете дізнатися останні новини щодо партій, зміни в правилах та лорі як днд так і проєкту "The last fall", цікаві факти та багато чого іншого </p>
+  
+  <!-- Контейнер для карты -->
+  <div class="world-map-container" id="mapContainer">
+    <img src="world_map.jpg" alt="World Map" class="world-map" id="worldMap">
+  </div>
+
+  <a href="#about" target="main page">Learn more about us</a>
+</div>
+
+<!-- блок 1 -->
+<div>
+  <h2>З чого почати?</h2>
+  <p>Якщож ви вже вирішили, що хочете спробувати себе в якості учасника проєкту, але ще не впевнені в тому ким ви бачете себе в цьому великому світі, радимо вам скористатися нашим тестом на те який класс більше підходить під ваш стиль гри </p>
+  <a href="Class_test.html" target="main page">Классовий тест</a>
+</div>
+
+<!-- блок 2 -->
+<div>
+  <h2>Приєднуйтесь до спільноти прямо зараз!</h2>
+  <p>Ви можете приэднатися до нашоъ спільноти прямо зараз, та спробувати поспілкуватися з іншими учасниками проєкту.</p>
+  <a href="#forum" target="main page"Відвідати форум</a>
+</div>
+
+<!-- блок 3 -->
+<div>
+  <h2>Виникли проблеми? </h2>
+  <p>Якщо ж у вас викили якісь проблеми з роботою сайту або ж ви хочете запропонуввати ідею щодо функцоналу сайту ви можете звернутився в службу підтримки сайту!</p>
+  <a href="#contact" target="main page"Служ</a>
+</div>
+
+<!-- JavaScript для перемещения и масштабирования с помощью колесика -->
+<script>
+  let zoomLevel = 1; 																// Начальный уровень масштаба
+  let isDragging = false; 															// Флаг для отслеживания перемещения
+  let startX, startY, currentX, currentY;
+
+  const worldMap = document.getElementById('worldMap');
+  const mapContainer = document.getElementById('mapContainer');
+  																		// Перемещение карты при клике и удерживании
+  mapContainer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    mapContainer.style.cursor = 'grabbing'; 													// Курсор при перетаскивании
+  });
+
+  mapContainer.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const moveX = e.clientX - startX;
+    const moveY = e.clientY - startY;
+    currentX = moveX;
+    currentY = moveY;
+    worldMap.style.transform = `translate(${currentX}px, ${currentY}px) scale(${zoomLevel})`;
+  });
+
+  mapContainer.addEventListener('mouseup', () => {
+    isDragging = false;
+    mapContainer.style.cursor = 'grab'; 													// Курсор после отпускания
+  });
+
+  mapContainer.addEventListener('mouseleave', () => {
+    isDragging = false;
+    mapContainer.style.cursor = 'grab'; 													// Курсор после ухода мыши
+  });
+
+  																		// Масштабирование с помощью колесика мыши
+  mapContainer.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      zoomIn(); 																// Увеличение
+    } else {
+      zoomOut(); 																// Уменьшение
+    }
+  });
+
+  																		// Функция увеличения масштаба
+  function zoomIn() {
+    zoomLevel += 0.1;
+    worldMap.style.transform = `translate(${currentX}px, ${currentY}px) scale(${zoomLevel})`;
+  }
+
+  																		// Функция уменьшения масштаба
+  function zoomOut() {
+    zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+    worldMap.style.transform = `translate(${currentX}px, ${currentY}px) scale(${zoomLevel})`;
+  }
+</script>
+
+</body>
+</html>

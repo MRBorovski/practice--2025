@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Классовый тест с 12 счётчиками</title>
+  <style>
+    /* Стил самой страницы */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      margin: 0;
+      padding: 20px;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ecf0f1;
+    }
+
+    /* Стили для форм */
+    form {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили для каждого вопроса */
+    .question-block {
+      margin-bottom: 25px;
+      padding: 15px;
+      border: 2px solid #7f8c8d;
+      border-radius: 8px;
+      background-color: #1a1a1a;
+    }
+
+    .question-block h2 {
+      font-size: 20px;
+      color: #ecf0f1;
+      margin-bottom: 15px;
+    }
+
+    /* Стили меток */
+    label {
+      font-size: 16px;
+      margin-right: 10px;
+      color: #ecf0f1;
+      cursor: pointer;
+    }
+
+    /* Стили для ккнопок */
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    /* Стили для кнопки отправки */
+    input[type="submit"] {
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3498db;
+    }
+
+    /* Стили для блока результатов */
+    #result {
+      margin-top: 30px;
+      background-color: #1a1a1a;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #result p {
+      font-size: 18px;
+      color: #ecf0f1;
+    }
+
+    /* Золотая тень для результатов с высоким баллом */
+	.high-score {
+  	font-weight: bold;
+  	text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Класовий тест</h1>
+
+  <form id="testForm" action="#" method="POST" onsubmit="calculateScore(event)">
+    <!-- Вопрос 1: Чи подобается вам користувватия магією? -->
+    <div class="question-block">
+      <h2>Чи подобается вам користувватия магією?</h2>
+      <label for="definitely1">Определенно</label>
+      <input type="radio" id="definitely1" name="magic1" value="5" data-classes="Волшебник,Колдун,Чародей,Жрец,Бард,Паладин"><br>
+
+      <label for="probablyYes1">Скорее да</label>
+      <input type="radio" id="probablyYes1" name="magic1" value="4" data-classes="Волшебник,Колдун,Чародей,Жрец,Бард,Паладин"><br>
+
+      <label for="notSure1">Не уверен</label>
+      <input type="radio" id="notSure1" name="magic1" value="3" data-classes="Волшебник,Колдун,Чародей,Жрец,Бард,Паладин"><br>
+
+      <label for="probablyNo1">Скорее нет</label>
+      <input type="radio" id="probablyNo1" name="magic1" value="2" data-classes="Волшебник,Колдун,Чародей,Жрец,Бард,Паладин"><br>
+
+      <label for="definitelyNo1">Точно нет</label>
+      <input type="radio" id="definitelyNo1" name="magic1" value="1" data-classes="Волшебник,Колдун,Чародей,Жрец,Бард,Паладин"><br>
+    </div>
+
+    <!-- Вопрос 2: Нравится ли вам сражаться вблизи? -->
+    <div class="question-block">
+      <h2>Нравится ли вам сражаться вблизи?</h2>
+      <label for="definitely2">Определенно</label>
+      <input type="radio" id="definitely2" name="combat2" value="5" data-classes="Воин,Варвар,Паладин,Монах,Плут"><br>
+
+      <label for="probablyYes2">Скорее да</label>
+      <input type="radio" id="probablyYes2" name="combat2" value="4" data-classes="Воин,Варвар,Паладин,Монах,Плут"><br>
+
+      <label for="notSure2">Не уверен</label>
+      <input type="radio" id="notSure2" name="combat2" value="3" data-classes="Воин,Варвар,Паладин,Монах,Плут"><br>
+
+      <label for="probablyNo2">Скорее нет</label>
+      <input type="radio" id="probablyNo2" name="combat2" value="2" data-classes="Воин,Варвар,Паладин,Монах,Плут"><br>
+
+      <label for="definitelyNo2">Точно нет</label>
+      <input type="radio" id="definitelyNo2" name="combat2" value="1" data-classes="Воин,Варвар,Паладин,Монах,Плут"><br>
+    </div>
+
+    <!-- Вопрос 3: Предпочитаете ли вы силу для решения проблем? -->
+    <div class="question-block">
+      <h2>Предпочитаете ли вы силу для решения проблем?</h2>
+      <label for="definitely3">Определенно</label>
+      <input type="radio" id="definitely3" name="strength3" value="5" data-classes="Варвар,Воин,Паладин,Монах,Следопыт"><br>
+
+      <label for="probablyYes3">Скорее да</label>
+      <input type="radio" id="probablyYes3" name="strength3" value="4" data-classes="Варвар,Воин,Паладин,Монах,Следопыт"><br>
+
+      <label for="notSure3">Не уверен</label>
+      <input type="radio" id="notSure3" name="strength3" value="3" data-classes="Варвар,Воин,Паладин,Монах,Следопыт"><br>
+
+      <label for="probablyNo3">Скорее нет</label>
+      <input type="radio" id="probablyNo3" name="strength3" value="2" data-classes="Варвар,Воин,Паладин,Монах,Следопыт"><br>
+
+      <label for="definitelyNo3">Точно нет</label>
+      <input type="radio" id="definitelyNo3" name="strength3" value="1" data-classes="Варвар,Воин,Паладин,Монах,Следопыт"><br>
+    </div>
+
+    <!-- Вопрос 4: Предпочитаете ли вы ловкость для решения проблем? -->
+    <div class="question-block">
+      <h2>Предпочитаете ли вы ловкость для решения проблем?</h2>
+      <label for="definitely4">Определенно</label>
+      <input type="radio" id="definitely4" name="agility4" value="5" data-classes="Бард,Жрец,Друид,Чародей,Колдун,Плут,Монах,Следопыт"><br>
+
+      <label for="probablyYes4">Скорее да</label>
+      <input type="radio" id="probablyYes4" name="agility4" value="4" data-classes="Бард,Жрец,Друид,Чародей,Колдун,Плут,Монах,Следопыт"><br>
+
+      <label for="notSure4">Не уверен</label>
+      <input type="radio" id="notSure4" name="agility4" value="3" data-classes="Бард,Жрец,Друид,Чародей,Колдун,Плут,Монах,Следопыт"><br>
+
+      <label for="probablyNo4">Скорее нет</label>
+      <input type="radio" id="probablyNo4" name="agility4" value="2" data-classes="Бард,Жрец,Друид,Чародей,Колдун,Плут,Монах,Следопыт"><br>
+
+      <label for="definitelyNo4">Точно нет</label>
+      <input type="radio" id="definitelyNo4" name="agility4" value="1" data-classes="Бард,Жрец,Друид,Чародей,Колдун,Плут,Монах,Следопыт"><br>
+    </div>
+
+    <!-- Вопрос 5: Предпочитаете ли вы интеллект для решения проблем? -->
+    <div class="question-block">
+      <h2>Предпочитаете ли вы интеллект для решения проблем?</h2>
+      <label for="definitely5">Определенно</label>
+      <input type="radio" id="definitely5" name="intelligence5" value="5" data-classes="Волшебник"><br>
+
+      <label for="probablyYes5">Скорее да</label>
+      <input type="radio" id="probablyYes5" name="intelligence5" value="4" data-classes="Волшебник"><br>
+
+      <label for="notSure5">Не уверен</label>
+      <input type="radio" id="notSure5" name="intelligence5" value="3" data-classes="Волшебник"><br>
+
+      <label for="probablyNo5">Скорее нет</label>
+      <input type="radio" id="probablyNo5" name="intelligence5" value="2" data-classes="Волшебник"><br>
+
+      <label for="definitelyNo5">Точно нет</label>
+      <input type="radio" id="definitelyNo5" name="intelligence5" value="1" data-classes="Волшебник"><br>
+    </div>
+
+    <input type="submit" value="Подсчитать">
+  </form>
+
+  <div id="result" style="margin-top: 20px;"></div>
+
+  <script>
+    													// Функция для подсчета баллов
+    function calculateScore(event) {
+  event.preventDefault();  										// Отменяем стандартное поведение формы
+	
+  let scores = {
+    "Варвар": 0,
+    "Бард": 0,
+    "Жрец": 0,
+    "Друид": 0,
+    "Воин": 0,
+    "Монах": 0,
+    "Паладин": 0,
+    "Следопыт": 0,
+    "Плут": 0,
+    "Чародей": 0,
+    "Колдун": 0,
+    "Волшебник": 0
+  };
+
+  let form = document.getElementById("testForm");
+
+ 												 // добавляем баллы классам
+  let radios = form.querySelectorAll("input[type='radio']:checked");
+  radios.forEach(radio => {
+    const classes = radio.getAttribute("data-classes").split(","); 
+    const value = parseInt(radio.value);  
+
+    												
+    classes.forEach(className => {
+      scores[className] += value;
+    });
+  });
+
+ 												 // Вывод результата
+  let result = document.getElementById("result");
+  let resultText = "";
+  for (let className in scores) {
+    let score = scores[className];
+    												// Добавляем желтую тень для вариантов где чем 10 балов
+    if (score > 10) {
+      resultText += `<p class="high-score">${className}: ${score} баллов</p>`;
+    } else {
+      resultText += `<p>${className}: ${score} баллов</p>`;
+    }
+  }
+
+  result.innerHTML = resultText;  							
+}
+  </script>
+
+</body>
+</html>
